@@ -42,6 +42,8 @@
 		A7414B2614DFB7C000E436DD /* Autoingest.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = Autoingest.1; sourceTree = "<group>"; };
 		A7414B2714DFB7D200E436DD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A7BB079D14DFC034002F23BE /* TheMissingAPI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TheMissingAPI-Prefix.pch"; sourceTree = "<group>"; };
+		A7BB07A114DFD186002F23BE /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A7BB07A214DFD186002F23BE /* Readme.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = Readme.markdown; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		A7414AEC14DFB5CA00E436DD = {
 			isa = PBXGroup;
 			children = (
+				A7BB07A014DFD177002F23BE /* Docs */,
 				A7414B0B14DFB60D00E436DD /* Core */,
 				A7414B0D14DFB60D00E436DD /* Demo */,
 				A7414AF914DFB5CB00E436DD /* Frameworks */,
@@ -138,6 +141,15 @@
 				A7414B2714DFB7D200E436DD /* main.m */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		A7BB07A014DFD177002F23BE /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				A7BB07A114DFD186002F23BE /* LICENSE */,
+				A7BB07A214DFD186002F23BE /* Readme.markdown */,
+			);
+			name = Docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
