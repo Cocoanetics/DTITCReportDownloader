@@ -1,0 +1,247 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A7414AFB14DFB5CB00E436DD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7414AFA14DFB5CB00E436DD /* Cocoa.framework */; };
+		A7414B0514DFB5CB00E436DD /* TheMissingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A7414B0414DFB5CB00E436DD /* TheMissingAPI.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A7414AF714DFB5CB00E436DD /* libTheMissingAPI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTheMissingAPI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7414AFA14DFB5CB00E436DD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A7414AFD14DFB5CB00E436DD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A7414AFE14DFB5CB00E436DD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A7414AFF14DFB5CB00E436DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A7414B0214DFB5CB00E436DD /* TheMissingAPI-Prefix.pch */ = {isa = PBXFileReference; path = "TheMissingAPI-Prefix.pch"; sourceTree = "<group>"; };
+		A7414B0314DFB5CB00E436DD /* TheMissingAPI.h */ = {isa = PBXFileReference; path = TheMissingAPI.h; sourceTree = "<group>"; };
+		A7414B0414DFB5CB00E436DD /* TheMissingAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheMissingAPI.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A7414AF414DFB5CB00E436DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7414AFB14DFB5CB00E436DD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A7414AEC14DFB5CA00E436DD = {
+			isa = PBXGroup;
+			children = (
+				A7414B0014DFB5CB00E436DD /* TheMissingAPI */,
+				A7414AF914DFB5CB00E436DD /* Frameworks */,
+				A7414AF814DFB5CB00E436DD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A7414AF814DFB5CB00E436DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A7414AF714DFB5CB00E436DD /* libTheMissingAPI.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A7414AF914DFB5CB00E436DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7414AFA14DFB5CB00E436DD /* Cocoa.framework */,
+				A7414AFC14DFB5CB00E436DD /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7414AFC14DFB5CB00E436DD /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7414AFD14DFB5CB00E436DD /* AppKit.framework */,
+				A7414AFE14DFB5CB00E436DD /* CoreData.framework */,
+				A7414AFF14DFB5CB00E436DD /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		A7414B0014DFB5CB00E436DD /* TheMissingAPI */ = {
+			isa = PBXGroup;
+			children = (
+				A7414B0314DFB5CB00E436DD /* TheMissingAPI.h */,
+				A7414B0414DFB5CB00E436DD /* TheMissingAPI.m */,
+				A7414B0114DFB5CB00E436DD /* Supporting Files */,
+			);
+			path = TheMissingAPI;
+			sourceTree = "<group>";
+		};
+		A7414B0114DFB5CB00E436DD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A7414B0214DFB5CB00E436DD /* TheMissingAPI-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A7414AF514DFB5CB00E436DD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A7414AF614DFB5CB00E436DD /* TheMissingAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7414B0814DFB5CB00E436DD /* Build configuration list for PBXNativeTarget "TheMissingAPI" */;
+			buildPhases = (
+				A7414AF314DFB5CB00E436DD /* Sources */,
+				A7414AF414DFB5CB00E436DD /* Frameworks */,
+				A7414AF514DFB5CB00E436DD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TheMissingAPI;
+			productName = TheMissingAPI;
+			productReference = A7414AF714DFB5CB00E436DD /* libTheMissingAPI.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A7414AEE14DFB5CA00E436DD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Drobnik KG";
+			};
+			buildConfigurationList = A7414AF114DFB5CA00E436DD /* Build configuration list for PBXProject "TheMissingAPI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A7414AEC14DFB5CA00E436DD;
+			productRefGroup = A7414AF814DFB5CB00E436DD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A7414AF614DFB5CB00E436DD /* TheMissingAPI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A7414AF314DFB5CB00E436DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7414B0514DFB5CB00E436DD /* TheMissingAPI.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A7414B0614DFB5CB00E436DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A7414B0714DFB5CB00E436DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A7414B0914DFB5CB00E436DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TheMissingAPI/TheMissingAPI-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A7414B0A14DFB5CB00E436DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TheMissingAPI/TheMissingAPI-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A7414AF114DFB5CA00E436DD /* Build configuration list for PBXProject "TheMissingAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7414B0614DFB5CB00E436DD /* Debug */,
+				A7414B0714DFB5CB00E436DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7414B0814DFB5CB00E436DD /* Build configuration list for PBXNativeTarget "TheMissingAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7414B0914DFB5CB00E436DD /* Debug */,
+				A7414B0A14DFB5CB00E436DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A7414AEE14DFB5CA00E436DD /* Project object */;
+}
