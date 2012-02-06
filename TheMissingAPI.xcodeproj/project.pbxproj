@@ -8,18 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		A7414AFB14DFB5CB00E436DD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7414AFA14DFB5CB00E436DD /* Cocoa.framework */; };
-		A7414B0514DFB5CB00E436DD /* TheMissingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A7414B0414DFB5CB00E436DD /* TheMissingAPI.m */; };
+		A7414B1114DFB66900E436DD /* DTITCReportDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = A7414B0F14DFB66900E436DD /* DTITCReportDownloader.h */; };
+		A7414B1214DFB66900E436DD /* DTITCReportDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = A7414B1014DFB66900E436DD /* DTITCReportDownloader.m */; };
+		A7414B1A14DFB77100E436DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7414B1914DFB77100E436DD /* Foundation.framework */; };
+		A7414B2814DFB7D200E436DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7414B2714DFB7D200E436DD /* main.m */; };
+		A7BB079E14DFC034002F23BE /* TheMissingAPI-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A7BB079D14DFC034002F23BE /* TheMissingAPI-Prefix.pch */; };
+		A7BB079F14DFC302002F23BE /* libITCReportDownloader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7414AF714DFB5CB00E436DD /* libITCReportDownloader.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A7414B1514DFB77100E436DD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		A7414AF714DFB5CB00E436DD /* libTheMissingAPI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTheMissingAPI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7414AF714DFB5CB00E436DD /* libITCReportDownloader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libITCReportDownloader.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7414AFA14DFB5CB00E436DD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A7414AFD14DFB5CB00E436DD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A7414AFE14DFB5CB00E436DD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A7414AFF14DFB5CB00E436DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A7414B0214DFB5CB00E436DD /* TheMissingAPI-Prefix.pch */ = {isa = PBXFileReference; path = "TheMissingAPI-Prefix.pch"; sourceTree = "<group>"; };
-		A7414B0314DFB5CB00E436DD /* TheMissingAPI.h */ = {isa = PBXFileReference; path = TheMissingAPI.h; sourceTree = "<group>"; };
-		A7414B0414DFB5CB00E436DD /* TheMissingAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheMissingAPI.m; sourceTree = "<group>"; };
+		A7414B0F14DFB66900E436DD /* DTITCReportDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTITCReportDownloader.h; sourceTree = "<group>"; };
+		A7414B1014DFB66900E436DD /* DTITCReportDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTITCReportDownloader.m; sourceTree = "<group>"; };
+		A7414B1714DFB77100E436DD /* Autoingest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Autoingest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7414B1914DFB77100E436DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A7414B2514DFB7C000E436DD /* Autoingest-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Autoingest-Prefix.pch"; sourceTree = "<group>"; };
+		A7414B2614DFB7C000E436DD /* Autoingest.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = Autoingest.1; sourceTree = "<group>"; };
+		A7414B2714DFB7D200E436DD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A7BB079D14DFC034002F23BE /* TheMissingAPI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TheMissingAPI-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,13 +53,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7414B1414DFB77100E436DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7BB079F14DFC302002F23BE /* libITCReportDownloader.a in Frameworks */,
+				A7414B1A14DFB77100E436DD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		A7414AEC14DFB5CA00E436DD = {
 			isa = PBXGroup;
 			children = (
-				A7414B0014DFB5CB00E436DD /* TheMissingAPI */,
+				A7414B0B14DFB60D00E436DD /* Core */,
+				A7414B0D14DFB60D00E436DD /* Demo */,
 				A7414AF914DFB5CB00E436DD /* Frameworks */,
 				A7414AF814DFB5CB00E436DD /* Products */,
 			);
@@ -46,7 +78,8 @@
 		A7414AF814DFB5CB00E436DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A7414AF714DFB5CB00E436DD /* libTheMissingAPI.a */,
+				A7414AF714DFB5CB00E436DD /* libITCReportDownloader.a */,
+				A7414B1714DFB77100E436DD /* Autoingest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				A7414AFA14DFB5CB00E436DD /* Cocoa.framework */,
+				A7414B1914DFB77100E436DD /* Foundation.framework */,
 				A7414AFC14DFB5CB00E436DD /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -70,22 +104,40 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		A7414B0014DFB5CB00E436DD /* TheMissingAPI */ = {
+		A7414B0B14DFB60D00E436DD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A7414B0314DFB5CB00E436DD /* TheMissingAPI.h */,
-				A7414B0414DFB5CB00E436DD /* TheMissingAPI.m */,
-				A7414B0114DFB5CB00E436DD /* Supporting Files */,
+				A7BB079D14DFC034002F23BE /* TheMissingAPI-Prefix.pch */,
+				A7414B0C14DFB60D00E436DD /* Source */,
 			);
-			path = TheMissingAPI;
+			path = Core;
 			sourceTree = "<group>";
 		};
-		A7414B0114DFB5CB00E436DD /* Supporting Files */ = {
+		A7414B0C14DFB60D00E436DD /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A7414B0214DFB5CB00E436DD /* TheMissingAPI-Prefix.pch */,
+				A7414B0F14DFB66900E436DD /* DTITCReportDownloader.h */,
+				A7414B1014DFB66900E436DD /* DTITCReportDownloader.m */,
 			);
-			name = "Supporting Files";
+			path = Source;
+			sourceTree = "<group>";
+		};
+		A7414B0D14DFB60D00E436DD /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				A7414B2514DFB7C000E436DD /* Autoingest-Prefix.pch */,
+				A7414B2614DFB7C000E436DD /* Autoingest.1 */,
+				A7414B0E14DFB60D00E436DD /* Source */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		A7414B0E14DFB60D00E436DD /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				A7414B2714DFB7D200E436DD /* main.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,15 +147,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7414B1114DFB66900E436DD /* DTITCReportDownloader.h in Headers */,
+				A7BB079E14DFC034002F23BE /* TheMissingAPI-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A7414AF614DFB5CB00E436DD /* TheMissingAPI */ = {
+		A7414AF614DFB5CB00E436DD /* Static Library */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7414B0814DFB5CB00E436DD /* Build configuration list for PBXNativeTarget "TheMissingAPI" */;
+			buildConfigurationList = A7414B0814DFB5CB00E436DD /* Build configuration list for PBXNativeTarget "Static Library" */;
 			buildPhases = (
 				A7414AF314DFB5CB00E436DD /* Sources */,
 				A7414AF414DFB5CB00E436DD /* Frameworks */,
@@ -113,10 +167,27 @@
 			);
 			dependencies = (
 			);
-			name = TheMissingAPI;
+			name = "Static Library";
 			productName = TheMissingAPI;
-			productReference = A7414AF714DFB5CB00E436DD /* libTheMissingAPI.a */;
+			productReference = A7414AF714DFB5CB00E436DD /* libITCReportDownloader.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		A7414B1614DFB77100E436DD /* Autoingest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7414B2214DFB77100E436DD /* Build configuration list for PBXNativeTarget "Autoingest" */;
+			buildPhases = (
+				A7414B1314DFB77100E436DD /* Sources */,
+				A7414B1414DFB77100E436DD /* Frameworks */,
+				A7414B1514DFB77100E436DD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Autoingest;
+			productName = Autoingest;
+			productReference = A7414B1714DFB77100E436DD /* Autoingest */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -139,7 +210,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A7414AF614DFB5CB00E436DD /* TheMissingAPI */,
+				A7414AF614DFB5CB00E436DD /* Static Library */,
+				A7414B1614DFB77100E436DD /* Autoingest */,
 			);
 		};
 /* End PBXProject section */
@@ -149,7 +221,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7414B0514DFB5CB00E436DD /* TheMissingAPI.m in Sources */,
+				A7414B1214DFB66900E436DD /* DTITCReportDownloader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7414B1314DFB77100E436DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7414B2814DFB7D200E436DD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,8 +287,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TheMissingAPI/TheMissingAPI-Prefix.pch";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Core/TheMissingAPI-Prefix.pch";
+				PRODUCT_NAME = ITCReportDownloader;
 			};
 			name = Debug;
 		};
@@ -216,7 +296,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TheMissingAPI/TheMissingAPI-Prefix.pch";
+				GCC_PREFIX_HEADER = "Core/TheMissingAPI-Prefix.pch";
+				PRODUCT_NAME = ITCReportDownloader;
+			};
+			name = Release;
+		};
+		A7414B2314DFB77100E436DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/Autoingest-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A7414B2414DFB77100E436DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo/Autoingest-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -233,13 +331,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7414B0814DFB5CB00E436DD /* Build configuration list for PBXNativeTarget "TheMissingAPI" */ = {
+		A7414B0814DFB5CB00E436DD /* Build configuration list for PBXNativeTarget "Static Library" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7414B0914DFB5CB00E436DD /* Debug */,
 				A7414B0A14DFB5CB00E436DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7414B2214DFB77100E436DD /* Build configuration list for PBXNativeTarget "Autoingest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7414B2314DFB77100E436DD /* Debug */,
+				A7414B2414DFB77100E436DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
