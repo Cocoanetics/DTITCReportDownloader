@@ -18,17 +18,13 @@ typedef enum
 	ITCReportSubTypeOptIn
 } ITCReportSubType;
 
+typedef void (^DTITCReportDownloaderCompletionHandler)(NSString *fileName, NSData *data);
+typedef void (^DTITCReportDownloaderErrorHandler)(NSError *error);
 
 @interface DTITCReportDownloader : NSObject
-{
-	void (^_successCallback)(NSString *fileName);
-}
-
 
 - (id)initWithUser:(NSString *)user password:(NSString *)password vendorIdentifier:(NSString *)vendorIdentifier;
 
-- (BOOL)downloadReportWithDate:(NSDate *)date reportType:(ITCReportType)reportType reportSubType:(ITCReportSubType)reportSubType error:(NSError **)error;
-
-@property (nonatomic, copy) void (^successCallback)(NSString *fileName);
+- (BOOL)downloadReportWithDate:(NSDate *)date reportType:(ITCReportType)reportType reportSubType:(ITCReportSubType)reportSubType completionHandler:(DTITCReportDownloaderCompletionHandler)completionHandler errorHandler:(DTITCReportDownloaderErrorHandler)errorHandler;
 
 @end

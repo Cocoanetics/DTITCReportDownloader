@@ -10,21 +10,30 @@
 
 int main (int argc, const char * argv[])
 {
-
+	
 	@autoreleasepool 
 	{
 		// check for invalid number of parameters
 		if (argc<7 || argc>8)
 		{
-			printf("Please enter all the required parameters.  For help, please download the latest User Guide from the Sales and Trends module in iTunes Connect.\n");
+			printf("Usage: Autoingest <username> <password> <vendorid> <report_type> <date_type> <report_subtype> [<date_yyyymmdd>]\n\n");
+			printf("username        The user name you use to log into iTunes Connect\n");
+			printf("password        The password you use to log into iTunes Connect\n");
+			printf("vendorid        Vendor ID (8####### )for the entity which you want to download the report\n");
+			printf("report_type     This is the report type you want to download. Cur- rently only Sales Reports are available\n");
+			printf("date_type       Weekly will provide you the Weekly version of the report\n");
+			printf("                Daily will provide you the Daily version of the report\n");
+			printf("report_subtype  Summary or Opt-In, this is the parameter for the Sales Reports\n");
+			printf("date_yyyymmdd   The date parameter is optional. Omit it to use yesterday's date\n\n");
+			
 			return 1;
 		}
 		
 		NSDate *reportDate = nil;
-
+		
 		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 		[formatter setDateFormat:@"yyyyMMdd"];
-
+		
 		// check for optional date parameter
 		if (argc == 8)
 		{
@@ -79,20 +88,34 @@ int main (int argc, const char * argv[])
 		// create a downloader
 		DTITCReportDownloader *downloader = [[DTITCReportDownloader alloc] initWithUser:user password:password vendorIdentifier:vendor];
 		
-		// set a success handler
-		downloader.successCallback = ^(NSString *fileName) {
-			printf("%s\nFile Downloaded Successfully\n", [fileName UTF8String]);
-		};
-		
-		// download this report
-		NSError *error = nil;
-		if (![downloader downloadReportWithDate:reportDate reportType:reportType reportSubType:reportSubType error:&error])
+		if ([downloader downloadReportWithDate:reportDate
+									reportType:reportType
+								 reportSubType:reportSubType
+							 completionHandler:^(NSString *fileName, NSData *data) {
+								 // get current working directory
+								 NSString *cwd = [[NSFileManager defaultManager] currentDirectoryPath];
+								 NSString *outputPath = [cwd stringByAppendingPathComponent:fileName];
+								 
+								 // write data to file
+								 NSError *writeError = nil;
+								 if (![data writeToFile:outputPath options:NSDataWritingAtomic error:&writeError])
+								 {
+									 printf("%s\n", [[writeError localizedDescription] UTF8String]);
+								 }
+							 }
+			 
+								  errorHandler:^(NSError *error) {
+									  printf("%s\n", [[error localizedDescription] UTF8String]); 
+								  }])
 		{
-			printf("%s\n", [[error localizedDescription] UTF8String]);
+			// success
+			return 0;
+		}
+		else
+		{
+			// failure
 			return 1;
 		}
-		
 	}
-    return 0;
 }
 

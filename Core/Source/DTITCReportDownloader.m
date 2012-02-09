@@ -82,7 +82,11 @@
 }
 
 
-- (BOOL)downloadReportWithDate:(NSDate *)date reportType:(ITCReportType)reportType reportSubType:(ITCReportSubType)reportSubType error:(NSError **)error
+- (BOOL)downloadReportWithDate:(NSDate *)date
+					reportType:(ITCReportType)reportType 
+				 reportSubType:(ITCReportSubType)reportSubType 
+			 completionHandler:(DTITCReportDownloaderCompletionHandler)completionHandler 
+				  errorHandler:(DTITCReportDownloaderErrorHandler)errorHandler
 {
 	NSMutableString *body = [NSMutableString string];
 	
@@ -123,10 +127,12 @@
 	
 	if (!data)
 	{
-		if (error)
+		if (errorHandler)
 		{
-			*error = [self genericErrorWithUnderlyingError:downloadError];
+			NSError *error = [self genericErrorWithUnderlyingError:downloadError];
+			errorHandler(error);
 		}
+		
 		return NO;
 	}
 	
@@ -135,10 +141,11 @@
 	
 	if (errorMsg)
 	{
-		if (error)
+		if (errorHandler)
 		{
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
-			*error = [NSError errorWithDomain:NSStringFromClass([self class]) code:1 userInfo:userInfo];
+			NSError *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:1 userInfo:userInfo];
+			errorHandler(error);
 		}
 		return NO;
 	}
@@ -147,42 +154,23 @@
 	
 	if (!fileName)
 	{
-		if (error)
+		if (errorHandler)
 		{
-			*error = [self genericErrorWithUnderlyingError:nil];
+			NSError *error = [self genericErrorWithUnderlyingError:nil];
+			errorHandler(error);
 		}
 		
 		return NO;
 	}
 	
-	NSString *cwd = [[NSFileManager defaultManager] currentDirectoryPath];
-	NSString *outputPath = [cwd stringByAppendingPathComponent:fileName];
+	// we got data, we got a filename, we're done!
 	
-	// write data to file
-	NSError *writeError = nil;
-	if ([data writeToFile:outputPath options:NSDataWritingAtomic error:&writeError])
+	if (completionHandler)
 	{
-		if (_successCallback)
-		{
-			_successCallback(fileName);
-		}
-	}
-	else
-	{
-		// could not write
-		if (error)
-		{
-			*error = writeError;
-			return NO;
-		}
+		completionHandler(fileName, data);
 	}
 	
 	return YES;
 }
-
-#pragma mark Properties
-
-@synthesize successCallback = _successCallback;
-
 
 @end
