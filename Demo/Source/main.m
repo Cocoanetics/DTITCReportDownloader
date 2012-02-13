@@ -49,6 +49,12 @@ int main (int argc, const char * argv[])
 			{
 				// make it a date
 				reportDate = [formatter dateFromString:dateParam];
+				
+				if (!reportDate)
+				{
+					printf("Invalid date parameter '%s'. Specify date as yyyyMMdd or ALL.\n", [dateParam UTF8String]);
+					return 1;
+				}
 			}
 		}
 		
