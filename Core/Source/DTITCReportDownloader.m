@@ -8,6 +8,15 @@
 
 #import "DTITCReportDownloader.h"
 
+// private functions
+@interface DTITCReportDownloader ()
+
+- (NSString *)_dateStringForReportDate:(NSDate *)date;
+- (NSString *)_stringByURLEncodingString:(NSString *)string;
+- (NSError *)_genericErrorWithUnderlyingError:(NSError *)error;
+
+@end
+
 @implementation DTITCReportDownloader
 {
 	NSString *_user;
@@ -29,58 +38,8 @@
 	return self;
 }
 
-- (NSString *)dateStringForReportDate:(NSDate *)date
-{
-	NSString *dateString = nil;
 
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"yyyyMMdd"];
-
-	NSDate *today = [NSDate date];
-
-	if (date)
-	{
-		dateString = [formatter stringFromDate:date];
-	}
-	else
-	{
-		// no date passed, get yesterday
-		NSCalendar *calendar = [NSCalendar currentCalendar];
-		
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setDay:-1];
-		
-		NSDate *yesterday = [calendar dateByAddingComponents:comps toDate:today options:0];
-		
-		dateString = [formatter stringFromDate:yesterday];
-	}
-	
-	return dateString;
-}
-
-- (NSString *)stringByURLEncodingString:(NSString *)string
-{
-		CFStringRef urlString = CFURLCreateStringByAddingPercentEscapes(
-																							 NULL,
-																							 (__bridge CFStringRef)string,
-																							 NULL,
-																							 (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
-																							 kCFStringEncodingUTF8 );
-		return (__bridge_transfer NSString *)urlString;
-}
-
-- (NSError *)genericErrorWithUnderlyingError:(NSError *)error
-{
-	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:@"The report you requested is not available at this time.  Please try again in a few minutes." forKey:NSLocalizedDescriptionKey];
-	
-	if (error)
-	{
-		[userInfo setObject:error forKey:NSUnderlyingErrorKey]; 
-	}
-	
-	return [NSError errorWithDomain:NSStringFromClass([self class]) code:1 userInfo:userInfo];
-}
-
+#pragma mark Downloading
 
 - (BOOL)downloadReportWithDate:(NSDate *)date
 					reportType:(ITCReportType)reportType 
@@ -91,10 +50,10 @@
 	NSMutableString *body = [NSMutableString string];
 	
 	// add username
-	[body appendFormat:@"USERNAME=%@", [self stringByURLEncodingString:_user]];
+	[body appendFormat:@"USERNAME=%@", [self _stringByURLEncodingString:_user]];
 	
 	// add password
-	[body appendFormat:@"&PASSWORD=%@", [self stringByURLEncodingString:_password]];
+	[body appendFormat:@"&PASSWORD=%@", [self _stringByURLEncodingString:_password]];
 	
 	// add vendorID
 	[body appendFormat:@"&VNDNUMBER=%@", _vendorIdentifier];
@@ -109,7 +68,7 @@
 	[body appendFormat:@"&REPORTTYPE=%@", (reportType==ITCReportSubTypeSummary)?@"Summary":@"Opt-In"];
 	
 	// date date
-	[body appendFormat:@"&REPORTDATE=%@", [self dateStringForReportDate:date]];
+	[body appendFormat:@"&REPORTDATE=%@", [self _dateStringForReportDate:date]];
 	
 	// construct the URL request
 	NSURL *apiURL = [NSURL URLWithString:@"https://reportingitc.apple.com/autoingestion.tft?"];
@@ -129,7 +88,7 @@
 	{
 		if (errorHandler)
 		{
-			NSError *error = [self genericErrorWithUnderlyingError:downloadError];
+			NSError *error = [self _genericErrorWithUnderlyingError:downloadError];
 			errorHandler(error);
 		}
 		
@@ -156,7 +115,7 @@
 	{
 		if (errorHandler)
 		{
-			NSError *error = [self genericErrorWithUnderlyingError:nil];
+			NSError *error = [self _genericErrorWithUnderlyingError:nil];
 			errorHandler(error);
 		}
 		
@@ -172,5 +131,54 @@
 	
 	return YES;
 }
+
+#pragma mark Utilities
+- (NSString *)_dateStringForReportDate:(NSDate *)date
+{
+	NSString *dateString = nil;
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyyMMdd"];
+	
+	NSDate *today = [NSDate date];
+	
+	if (date)
+	{
+		dateString = [formatter stringFromDate:date];
+	}
+	else
+	{
+		// no date passed, get yesterday
+		NSCalendar *calendar = [NSCalendar currentCalendar];
+		
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setDay:-1];
+		
+		NSDate *yesterday = [calendar dateByAddingComponents:comps toDate:today options:0];
+		
+		dateString = [formatter stringFromDate:yesterday];
+	}
+	
+	return dateString;
+}
+
+- (NSString *)_stringByURLEncodingString:(NSString *)string
+{
+	CFStringRef urlString = CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)string, NULL, (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ", kCFStringEncodingUTF8 );
+	return (__bridge_transfer NSString *)urlString;
+}
+
+- (NSError *)_genericErrorWithUnderlyingError:(NSError *)error
+{
+	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:@"The report you requested is not available at this time.  Please try again in a few minutes." forKey:NSLocalizedDescriptionKey];
+	
+	if (error)
+	{
+		[userInfo setObject:error forKey:NSUnderlyingErrorKey]; 
+	}
+	
+	return [NSError errorWithDomain:NSStringFromClass([self class]) code:1 userInfo:userInfo];
+}
+
 
 @end
