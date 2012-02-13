@@ -113,14 +113,28 @@ int main (int argc, const char * argv[])
 		
 		__block NSUInteger downloadedFiles = 0;
 		
+		NSFileManager *fileManager = [NSFileManager defaultManager];
+		NSString *cwd = [fileManager currentDirectoryPath];
+		
 		do 
 		{
-			if ([downloader downloadReportWithDate:reportDate
+			NSString *predictedName = [downloader predictedFileNameForDate:reportDate reportType:reportType reportSubType:reportSubType compressed:YES];
+			NSString *predictedOutputPath = [cwd stringByAppendingPathComponent:predictedName];
+			
+			if ([fileManager fileExistsAtPath:predictedOutputPath])
+			{
+				printf("Skipped %s\n", [predictedName UTF8String]);
+				
+				if (!downloadAll)
+				{
+					break;
+				}
+			}
+			else if ([downloader downloadReportWithDate:reportDate
 										reportType:reportType
 									 reportSubType:reportSubType
 								 completionHandler:^(NSString *fileName, NSData *data) {
 									 // get current working directory
-									 NSString *cwd = [[NSFileManager defaultManager] currentDirectoryPath];
 									 NSString *outputPath = [cwd stringByAppendingPathComponent:fileName];
 									 
 									 // write data to file

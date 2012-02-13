@@ -27,4 +27,6 @@ typedef void (^DTITCReportDownloaderErrorHandler)(NSError *error);
 
 - (BOOL)downloadReportWithDate:(NSDate *)date reportType:(ITCReportType)reportType reportSubType:(ITCReportSubType)reportSubType completionHandler:(DTITCReportDownloaderCompletionHandler)completionHandler errorHandler:(DTITCReportDownloaderErrorHandler)errorHandler;
 
+- (NSString *)predictedFileNameForDate:(NSDate *)date reportType:(ITCReportType)reportType reportSubType:(ITCReportSubType)reportSubType compressed:(BOOL)compressed;
+
 @end

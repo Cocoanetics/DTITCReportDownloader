@@ -180,5 +180,59 @@
 	return [NSError errorWithDomain:NSStringFromClass([self class]) code:1 userInfo:userInfo];
 }
 
+- (NSString *)predictedFileNameForDate:(NSDate *)date reportType:(ITCReportType)reportType reportSubType:(ITCReportSubType)reportSubType compressed:(BOOL)compressed
+{
+	// for weekly reports go back to previous Sunday
+	if (reportType == ITCReportTypeWeekly)
+	{
+		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		
+		NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:date];
+		
+		if (comps.weekday!=1) // not a Sunday
+		{
+			comps.day = -(comps.weekday-1);
+			comps.weekday = 0;
+			
+			date = [gregorian dateByAddingComponents:comps toDate:date options:0];
+		}
+	}
+	
+	NSMutableString *retString = [NSMutableString string];
+	
+	// always Sales (or is this 
+	[retString appendString:@"S"];
+	
+	[retString appendString:@"_"];
+	
+	switch (reportType) 
+	{
+		case ITCReportTypeDaily:
+			[retString appendString:@"D"];
+			break;
+			
+		case ITCReportTypeWeekly:
+			[retString appendString:@"W"];
+			break;
+	}
+	
+	[retString appendString:@"_"];
+
+	[retString appendString:_vendorIdentifier];
+	
+	[retString appendString:@"_"];
+	
+	[retString appendString:[self _dateStringForReportDate:date]];
+	
+	[retString appendString:@".txt"];
+	
+	if (compressed)
+	{
+		[retString appendString:@".gz"];
+	}
+
+	return retString;
+}
+
 
 @end
