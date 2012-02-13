@@ -65,7 +65,7 @@
 	[body appendFormat:@"&DATETYPE=%@", (reportType==ITCReportTypeDaily)?@"Daily":@"Weekly"];
 
 	// add report sub type
-	[body appendFormat:@"&REPORTTYPE=%@", (reportType==ITCReportSubTypeSummary)?@"Summary":@"Opt-In"];
+	[body appendFormat:@"&REPORTTYPE=%@", (reportSubType==ITCReportSubTypeSummary)?@"Summary":@"Opt-In"];
 	
 	// date date
 	[body appendFormat:@"&REPORTDATE=%@", [self _dateStringForReportDate:date]];
