@@ -162,10 +162,12 @@ int main (int argc, const char * argv[])
                                          reportDateType:reportDateType
                                           reportSubType:reportSubType
                                       completionHandler:^(NSString *fileName, NSData *data) {
+                                          NSString *baseName = [fileName stringByReplacingOccurrencesOfString:@".txt.gz" withString:@""];
+                                          
                                           // update actual report date
                                           NSString *dateFormat = NSStringWithDateFormatForITCReportDateType(reportDateType);
                                           
-                                          NSString *dateStringInName = [fileName substringWithRange:NSMakeRange(13, [dateFormat length])];
+                                          NSString *dateStringInName = [baseName substringWithRange:NSMakeRange([baseName length]-[dateFormat length], [dateFormat length])];
                                           formatter.dateFormat = dateFormat;
                                           NSDate *parsedDate = [formatter dateFromString:dateStringInName];
                                           
