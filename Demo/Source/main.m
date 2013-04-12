@@ -20,10 +20,12 @@ int main (int argc, const char * argv[])
 			printf("username        The user name you use to log into iTunes Connect\n");
 			printf("password        The password you use to log into iTunes Connect\n");
 			printf("vendorid        Vendor ID (8####### )for the entity which you want to download the report\n");
-			printf("report_type     This is the report type you want to download. Currently only Sales Reports are available\n");
-			printf("date_type       Weekly will provide you the Weekly version of the report\n");
+			printf("report_type     This is the report type you want to download. Available: Sales, Opt-In, Newsstand\n");
+			printf("date_type       Yearly will provide you the Yearly version of the report\n");
+			printf("                Monthly will provide you the Monthly version of the report\n");
+			printf("                Weekly will provide you the Weekly version of the report\n");
 			printf("                Daily will provide you the Daily version of the report\n");
-			printf("report_subtype  Summary or Opt-In, this is the parameter for the Sales Reports\n");
+			printf("report_subtype  Summary, Detailed or Opt-In, this is the parameter for the Sales Reports\n");
 			printf("date_yyyymmdd   The date parameter is optional. Omit it to use yesterday's date.\n");
 			printf("                If you specify ALL for the date then the tool will try to download all reports of this type.\n\n");
 			
