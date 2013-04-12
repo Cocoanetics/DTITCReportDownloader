@@ -184,6 +184,15 @@ int main (int argc, const char * argv[])
                                           // get current working directory
                                           NSString *outputPath = [cwd stringByAppendingPathComponent:fileName];
                                           
+                                          // skip this file if output already exists
+                                          if ([[NSFileManager defaultManager] fileExistsAtPath:outputPath])
+                                          {
+                                              printf("Skipped %s\n", [fileName UTF8String]);
+                                              downloadedFiles++;
+                                              
+                                              return;
+                                          }
+                                          
                                           // write data to file
                                           NSError *writeError = nil;
                                           if ([data writeToFile:outputPath options:NSDataWritingAtomic error:&writeError])
