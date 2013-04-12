@@ -14,6 +14,9 @@
 		A7414B2814DFB7D200E436DD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A7414B2714DFB7D200E436DD /* main.m */; };
 		A7BB079E14DFC034002F23BE /* TheMissingAPI-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = A7BB079D14DFC034002F23BE /* TheMissingAPI-Prefix.pch */; };
 		A7BB079F14DFC302002F23BE /* libITCReportDownloader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7414AF714DFB5CB00E436DD /* libITCReportDownloader.a */; };
+		A7D6D1D3171804B800835F5F /* DTITCFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D6D1D1171804B800835F5F /* DTITCFunctions.h */; };
+		A7D6D1D4171804B800835F5F /* DTITCFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D6D1D2171804B800835F5F /* DTITCFunctions.m */; };
+		A7D6D1D7171804DF00835F5F /* DTITCConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D6D1D5171804DF00835F5F /* DTITCConstants.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +47,10 @@
 		A7BB079D14DFC034002F23BE /* TheMissingAPI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TheMissingAPI-Prefix.pch"; sourceTree = "<group>"; };
 		A7BB07A114DFD186002F23BE /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A7BB07A214DFD186002F23BE /* Readme.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = Readme.markdown; sourceTree = "<group>"; };
+		A7D6D1D1171804B800835F5F /* DTITCFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTITCFunctions.h; sourceTree = "<group>"; };
+		A7D6D1D2171804B800835F5F /* DTITCFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTITCFunctions.m; sourceTree = "<group>"; };
+		A7D6D1D5171804DF00835F5F /* DTITCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTITCConstants.h; sourceTree = "<group>"; };
+		A7D6D1D91718056600835F5F /* DTITC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTITC.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +128,10 @@
 			children = (
 				A7414B0F14DFB66900E436DD /* DTITCReportDownloader.h */,
 				A7414B1014DFB66900E436DD /* DTITCReportDownloader.m */,
+				A7D6D1D1171804B800835F5F /* DTITCFunctions.h */,
+				A7D6D1D2171804B800835F5F /* DTITCFunctions.m */,
+				A7D6D1D5171804DF00835F5F /* DTITCConstants.h */,
+				A7D6D1D91718056600835F5F /* DTITC.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -161,6 +172,8 @@
 			files = (
 				A7414B1114DFB66900E436DD /* DTITCReportDownloader.h in Headers */,
 				A7BB079E14DFC034002F23BE /* TheMissingAPI-Prefix.pch in Headers */,
+				A7D6D1D3171804B800835F5F /* DTITCFunctions.h in Headers */,
+				A7D6D1D7171804DF00835F5F /* DTITCConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +220,7 @@
 		A7414AEE14DFB5CA00E436DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Drobnik KG";
 			};
 			buildConfigurationList = A7414AF114DFB5CA00E436DD /* Build configuration list for PBXProject "TheMissingAPI" */;
@@ -234,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7414B1214DFB66900E436DD /* DTITCReportDownloader.m in Sources */,
+				A7D6D1D4171804B800835F5F /* DTITCFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +268,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -268,6 +286,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -281,6 +300,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -289,6 +312,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
@@ -298,6 +322,7 @@
 		A7414B0914DFB5CB00E436DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/TheMissingAPI-Prefix.pch";
 				PRODUCT_NAME = ITCReportDownloader;
@@ -307,6 +332,7 @@
 		A7414B0A14DFB5CB00E436DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/TheMissingAPI-Prefix.pch";
 				PRODUCT_NAME = ITCReportDownloader;

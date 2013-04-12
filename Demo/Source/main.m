@@ -33,8 +33,52 @@ int main (int argc, const char * argv[])
 		__block NSDate *reportDate = nil;
 		BOOL downloadAll = NO;
 		
-		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"yyyyMMdd"];
+		NSString *user = [NSString stringWithUTF8String:argv[1]];
+		NSString *password = [NSString stringWithUTF8String:argv[2]]; 
+		NSString *vendor = [NSString stringWithUTF8String:argv[3]]; 
+		
+		NSString *reportTypeString = [NSString stringWithUTF8String:argv[4]];
+        ITCReportType reportType = reportTypeFromString(reportTypeString);
+        
+        if (!reportType)
+        {
+			printf("Invalid report type '%s'. Only report type 'Sales' or 'Newsstand' supported.\n", [reportTypeString UTF8String]);
+			return 1;
+		}
+		
+		NSString *dateTypeString = [NSString stringWithUTF8String:argv[5]];
+		ITCReportDateType reportDateType = reportDateTypeFromString(dateTypeString);
+        
+        if (!reportDateType)
+		{
+			printf("Invalid day type '%s'. Only day types 'Daily','Weekly','Monthly' and 'Yearly' supported.\n", [dateTypeString UTF8String]);
+			return 1;
+		}
+		
+		NSString *reportSubTypeString = [NSString stringWithUTF8String:argv[6]];
+		ITCReportSubType reportSubType;
+		if ([reportSubTypeString isEqualToString:@"Summary"])
+		{
+			reportSubType = ITCReportSubTypeSummary;
+		}
+		else if ([reportSubTypeString isEqualToString:@"Detailed"])
+		{
+			reportSubType = ITCReportSubTypeDetailed;
+		}
+		else if ([reportSubTypeString isEqualToString:@"Opt-In"])
+		{
+			reportSubType = ITCReportSubTypeOptIn;
+		}
+		else
+		{
+			printf("Invalid report sub type '%s'. Only sub types 'Summary', 'Detailed' and 'Opt-In' supported.\n", [reportSubTypeString UTF8String]);
+			return 1;
+		}
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        NSString *dateFormat = NSStringWithDateFormatForITCReportDateType(reportDateType);
+        
+		[formatter setDateFormat:dateFormat];
 		
 		// check for optional date parameter
 		if (argc == 8)
@@ -52,12 +96,11 @@ int main (int argc, const char * argv[])
 				
 				if (!reportDate)
 				{
-					printf("Invalid date parameter '%s'. Specify date as yyyyMMdd or ALL.\n", [dateParam UTF8String]);
+					printf("Invalid date parameter '%s'. Specify date as %s or ALL.\n", [dateParam UTF8String], [dateFormat UTF8String]);
 					return 1;
 				}
 			}
 		}
-		
 		
 		if (!reportDate)
 		{
@@ -70,50 +113,6 @@ int main (int argc, const char * argv[])
 			reportDate = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:today options:0];
 		}
 		
-		NSString *user = [NSString stringWithUTF8String:argv[1]];
-		NSString *password = [NSString stringWithUTF8String:argv[2]]; 
-		NSString *vendor = [NSString stringWithUTF8String:argv[3]]; 
-		
-		NSString *reportTypeString = [NSString stringWithUTF8String:argv[4]];
-		if (![reportTypeString isEqualToString:@"Sales"])
-		{
-			printf("Invalid report type '%s'. Only report type 'Sales' supported.\n", [reportTypeString UTF8String]);
-			return 1;
-		}
-		
-		
-		NSString *dateTypeString = [NSString stringWithUTF8String:argv[5]];
-		ITCReportType reportType;
-		if ([dateTypeString isEqualToString:@"Daily"])
-		{
-			reportType = ITCReportTypeDaily;
-		}
-		else if ([dateTypeString isEqualToString:@"Weekly"])
-		{
-			reportType = ITCReportTypeWeekly;
-		}
-		else
-		{
-			printf("Invalid day type '%s'. Only day types 'Daily' or 'Weekly' supported.\n", [dateTypeString UTF8String]);
-			return 1;
-		}
-		
-		NSString *reportSubTypeString = [NSString stringWithUTF8String:argv[6]];
-		ITCReportSubType reportSubType;
-		if ([reportSubTypeString isEqualToString:@"Summary"])
-		{
-			reportSubType = ITCReportSubTypeSummary;
-		}
-		else if ([reportTypeString isEqualToString:@"Opt-In"])
-		{
-			reportSubType = ITCReportSubTypeOptIn;
-		}
-		else
-		{
-			printf("Invalid report sub type '%s'. Only sub types 'Summary' or 'Opt-In' supported.\n", [reportSubTypeString UTF8String]);
-			return 1;
-		}
-		
 		// create a downloader
 		DTITCReportDownloader *downloader = [[DTITCReportDownloader alloc] initWithUser:user password:password vendorIdentifier:vendor];
 		
@@ -124,7 +123,12 @@ int main (int argc, const char * argv[])
 		
 		do 
 		{
-			NSString *predictedName = [downloader predictedFileNameForDate:reportDate reportType:reportType reportSubType:reportSubType compressed:YES];
+			NSString *predictedName = [downloader predictedFileNameForDate:reportDate
+                                                                reportType:reportType
+                                                            reportDateType:reportDateType
+                                                             reportSubType:reportSubType
+                                                                compressed:YES];
+                                       
 			NSString *predictedOutputPath = [cwd stringByAppendingPathComponent:predictedName];
 			
 			if ([fileManager fileExistsAtPath:predictedOutputPath])
@@ -137,21 +141,25 @@ int main (int argc, const char * argv[])
 				}
 			}
 			else if ([downloader downloadReportWithDate:reportDate
-										reportType:reportType
-									 reportSubType:reportSubType
-								 completionHandler:^(NSString *fileName, NSData *data) {
-									 // get current working directory
-									 NSString *outputPath = [cwd stringByAppendingPathComponent:fileName];
-									 
-									 // write data to file
-									 NSError *writeError = nil;
-									 if ([data writeToFile:outputPath options:NSDataWritingAtomic error:&writeError])
+                                             reportType:reportType
+                                         reportDateType:reportDateType
+                                          reportSubType:reportSubType
+                                      completionHandler:^(NSString *fileName, NSData *data) {
+                                          // get current working directory
+                                          NSString *outputPath = [cwd stringByAppendingPathComponent:fileName];
+                                          
+                                          // write data to file
+                                          NSError *writeError = nil;
+                                          if ([data writeToFile:outputPath options:NSDataWritingAtomic error:&writeError])
 									 {
 										 printf("%s\n", [fileName UTF8String]);
 										 downloadedFiles++;
 										 
 										 // update actual report date
-										 NSString *dateStringInName = [fileName substringWithRange:NSMakeRange(13, 8)];
+                                         NSString *dateFormat = NSStringWithDateFormatForITCReportDateType(reportDateType);
+                                         
+										 NSString *dateStringInName = [fileName substringWithRange:NSMakeRange(13, [dateFormat length])];
+                                         formatter.dateFormat = dateFormat;
 										 reportDate = [formatter dateFromString:dateStringInName];
 									 }
 									 else
@@ -192,18 +200,43 @@ int main (int argc, const char * argv[])
 			
 			if (downloadAll)
 			{
-				// move to one day/week earlier
+				// move to one day/week/month/year earlier
 				NSDateComponents *comps = [[NSDateComponents alloc] init];
-				if (reportType == ITCReportTypeDaily)
-				{
-					[comps setDay:-1];
-				}
-				else if (reportType == ITCReportTypeWeekly)
-				{
-					[comps setDay:-7];
-				}
+                
+                switch (reportDateType)
+                {
+                    case ITCReportDateTypeDaily:
+                    {
+                        [comps setDay:-1];
+                        break;
+                    }
+
+                    case ITCReportDateTypeWeekly:
+                    {
+                        [comps setDay:-1];
+                        break;
+                    }
+
+                    case ITCReportDateTypeMonthly:
+                    {
+                        [comps setMonth:-1];
+                        break;
+                    }
+
+                    case ITCReportDateTypeYearly:
+                    {
+                        [comps setYear:-1];
+                        break;
+                    }
+                        
+                    default:
+                    {
+                        break;
+                    }
+                }
+                
 				reportDate = [[NSCalendar currentCalendar] dateByAddingComponents:comps toDate:reportDate options:0];
-			}
+ 			}
 			
 		} while (1);
 		

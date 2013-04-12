@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Drobnik KG. All rights reserved.
 //
 
-#import "DTITCReportDownloader.h"
+#import "DTITC.h"
 
 // private functions
 @interface DTITCReportDownloader ()
 
-- (NSString *)_dateStringForReportDate:(NSDate *)date;
+- (NSString *)_dateStringForReportDate:(NSDate *)date reportDateType:(ITCReportDateType)reportDateType;
 - (NSString *)_stringByURLEncodingString:(NSString *)string;
 - (NSError *)_genericErrorWithUnderlyingError:(NSError *)error;
 
@@ -42,10 +42,11 @@
 #pragma mark Downloading
 
 - (BOOL)downloadReportWithDate:(NSDate *)date
-					reportType:(ITCReportType)reportType 
-				 reportSubType:(ITCReportSubType)reportSubType 
-			 completionHandler:(DTITCReportDownloaderCompletionHandler)completionHandler 
-				  errorHandler:(DTITCReportDownloaderErrorHandler)errorHandler
+                    reportType:(ITCReportType)reportType
+                reportDateType:(ITCReportDateType)reportDateType
+                 reportSubType:(ITCReportSubType)reportSubType
+             completionHandler:(DTITCReportDownloaderCompletionHandler)completionHandler
+                  errorHandler:(DTITCReportDownloaderErrorHandler)errorHandler
 {
 	NSMutableString *body = [NSMutableString string];
 	
@@ -58,17 +59,17 @@
 	// add vendorID
 	[body appendFormat:@"&VNDNUMBER=%@", _vendorIdentifier];
 	
-	// add report type, only Sales valid at this moment
-	[body appendString:@"&TYPEOFREPORT=Sales"];
-	 
 	// add report type
-	[body appendFormat:@"&DATETYPE=%@", (reportType==ITCReportTypeDaily)?@"Daily":@"Weekly"];
+    [body appendFormat:@"&TYPEOFREPORT=%@", NSStringFromITCReportType(reportType)];
+    
+	// add report date type
+    [body appendFormat:@"&DATETYPE=%@", NSStringFromITCReportDateType(reportDateType)];
 
-	// add report sub type
-	[body appendFormat:@"&REPORTTYPE=%@", (reportSubType==ITCReportSubTypeSummary)?@"Summary":@"Opt-In"];
-	
+    // add report sub type
+    [body appendFormat:@"&REPORTTYPE=%@", NSStringFromITCReportSubType(reportSubType)];
+    
 	// date date
-	[body appendFormat:@"&REPORTDATE=%@", [self _dateStringForReportDate:date]];
+	[body appendFormat:@"&REPORTDATE=%@", [self _dateStringForReportDate:date reportDateType:reportDateType]];
 	
 	// construct the URL request
 	NSURL *apiURL = [NSURL URLWithString:@"https://reportingitc.apple.com/autoingestion.tft?"];
@@ -133,13 +134,13 @@
 }
 
 #pragma mark Utilities
-- (NSString *)_dateStringForReportDate:(NSDate *)date
+- (NSString *)_dateStringForReportDate:(NSDate *)date reportDateType:(ITCReportDateType)reportDateType
 {
 	NSString *dateString = nil;
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"yyyyMMdd"];
-	
+    [formatter setDateFormat:NSStringWithDateFormatForITCReportDateType(reportDateType)];
+    
 	NSDate *today = [NSDate date];
 	
 	if (date)
@@ -180,10 +181,14 @@
 	return [NSError errorWithDomain:NSStringFromClass([self class]) code:1 userInfo:userInfo];
 }
 
-- (NSString *)predictedFileNameForDate:(NSDate *)date reportType:(ITCReportType)reportType reportSubType:(ITCReportSubType)reportSubType compressed:(BOOL)compressed
+- (NSString *)predictedFileNameForDate:(NSDate *)date
+                            reportType:(ITCReportType)reportType
+                        reportDateType:(ITCReportDateType)reportDateType
+                         reportSubType:(ITCReportSubType)reportSubType
+                            compressed:(BOOL)compressed
 {
 	// for weekly reports go back to previous Sunday
-	if (reportType == ITCReportTypeWeekly)
+	if (reportType == ITCReportDateTypeWeekly)
 	{
 		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		
@@ -204,25 +209,19 @@
 	[retString appendString:@"S"];
 	
 	[retString appendString:@"_"];
-	
-	switch (reportType) 
-	{
-		case ITCReportTypeDaily:
-			[retString appendString:@"D"];
-			break;
-			
-		case ITCReportTypeWeekly:
-			[retString appendString:@"W"];
-			break;
-	}
-	
+    
+    NSString *dateTypeString = NSStringFromITCReportDateType(reportDateType);
+    
+    NSString *shortType = [dateTypeString substringToIndex:1];
+    [retString appendString:shortType];
+    
 	[retString appendString:@"_"];
 
 	[retString appendString:_vendorIdentifier];
 	
 	[retString appendString:@"_"];
 	
-	[retString appendString:[self _dateStringForReportDate:date]];
+	[retString appendString:[self _dateStringForReportDate:date reportDateType:reportDateType]];
 	
 	[retString appendString:@".txt"];
 	
