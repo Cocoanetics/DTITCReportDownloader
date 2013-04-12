@@ -34,7 +34,7 @@
 		_password = [password copy];
 		_vendorIdentifier = [vendorIdentifier copy];
 	}
-
+    
 	return self;
 }
 
@@ -64,7 +64,7 @@
     
 	// add report date type
     [body appendFormat:@"&DATETYPE=%@", NSStringFromITCReportDateType(reportDateType)];
-
+    
     // add report sub type
     [body appendFormat:@"&REPORTTYPE=%@", NSStringFromITCReportSubType(reportSubType)];
     
@@ -79,11 +79,11 @@
 	
 	// set the body
 	[request setHTTPBody:[body dataUsingEncoding:NSUTF8StringEncoding]];
-	
+    
 	NSHTTPURLResponse *response = nil;
 	NSError *downloadError = nil;
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response
-																						 error:&downloadError];
+                                                     error:&downloadError];
 	
 	if (!data)
 	{
@@ -175,7 +175,7 @@
 	
 	if (error)
 	{
-		[userInfo setObject:error forKey:NSUnderlyingErrorKey]; 
+		[userInfo setObject:error forKey:NSUnderlyingErrorKey];
 	}
 	
 	return [NSError errorWithDomain:NSStringFromClass([self class]) code:1 userInfo:userInfo];
@@ -187,25 +187,9 @@
                          reportSubType:(ITCReportSubType)reportSubType
                             compressed:(BOOL)compressed
 {
-	// for weekly reports go back to previous Sunday
-	if (reportType == ITCReportDateTypeWeekly)
-	{
-		NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		
-		NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:date];
-		
-		if (comps.weekday!=1) // not a Sunday
-		{
-			comps.day = -(comps.weekday-1);
-			comps.weekday = 0;
-			
-			date = [gregorian dateByAddingComponents:comps toDate:date options:0];
-		}
-	}
-	
 	NSMutableString *retString = [NSMutableString string];
 	
-	// always Sales (or is this 
+	// always Sales (or is this
 	[retString appendString:@"S"];
 	
 	[retString appendString:@"_"];
@@ -216,7 +200,7 @@
     [retString appendString:shortType];
     
 	[retString appendString:@"_"];
-
+    
 	[retString appendString:_vendorIdentifier];
 	
 	[retString appendString:@"_"];
@@ -229,7 +213,7 @@
 	{
 		[retString appendString:@".gz"];
 	}
-
+    
 	return retString;
 }
 
