@@ -189,10 +189,17 @@
 {
 	NSMutableString *retString = [NSMutableString string];
 	
-	// always Sales (or is this
-	[retString appendString:@"S"];
+    NSString *reportTypeString = [NSStringFromITCReportType(reportType) substringToIndex:1];
+	[retString appendString:reportTypeString];
 	
 	[retString appendString:@"_"];
+
+    if (reportType != ITCReportTypeSales)
+    {
+        NSString *reportSubTypeString = [NSStringFromITCReportSubType(reportSubType) substringToIndex:1];
+        [retString appendString:reportSubTypeString];
+        [retString appendString:@"_"];
+    }
     
     NSString *dateTypeString = NSStringFromITCReportDateType(reportDateType);
     
