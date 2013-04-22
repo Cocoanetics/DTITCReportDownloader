@@ -16,161 +16,161 @@
 
 NSString *NSStringFromITCReportType(ITCReportType reportType)
 {
-    switch (reportType)
-    {
-        case ITCReportTypeSales:
-        {
-            return @"Sales";
-        }
-            
-        case ITCReportTypeNewsstand:
-        {
-            return @"Newsstand";
-        }
-            
-        default:
-        {
-            return nil;
-        }
-    }
+	switch (reportType)
+	{
+		case ITCReportTypeSales:
+		{
+			return @"Sales";
+		}
+			
+		case ITCReportTypeNewsstand:
+		{
+			return @"Newsstand";
+		}
+			
+		case ITCReportTypeOptIn:
+		{
+			return @"Opt-In";
+		}
+			
+		default:
+		{
+			return nil;
+		}
+	}
 }
 
 ITCReportType reportTypeFromString(NSString *reportTypeString)
 {
-    if ([reportTypeString isEqualToString:@"Sales"] || [reportTypeString isEqualToString:@"S"])
-    {
-        return ITCReportTypeSales;
-    }
-    else if ([reportTypeString isEqualToString:@"Newsstand"] || [reportTypeString isEqualToString:@"N"])
-    {
-        return ITCReportTypeNewsstand;
-    }
-    
-    return ITCReportTypeUnknown;
+	if ([reportTypeString isEqualToString:@"Sales"] || [reportTypeString isEqualToString:@"S"])
+	{
+		return ITCReportTypeSales;
+	}
+	else if ([reportTypeString isEqualToString:@"Newsstand"] || [reportTypeString isEqualToString:@"N"])
+	{
+		return ITCReportTypeNewsstand;
+	}
+	else if ([reportTypeString isEqualToString:@"Opt-In"] || [reportTypeString isEqualToString:@"O"])
+	{
+		return ITCReportTypeOptIn;
+	}
+	
+	return ITCReportTypeUnknown;
 }
 
 #pragma mark - Report Sub Type Conversion
 
 NSString *NSStringFromITCReportSubType(ITCReportSubType reportSubType)
 {
-    switch (reportSubType)
-    {
-        case ITCReportSubTypeSummary:
-        {
-            return @"Summary";
-        }
-            
-        case ITCReportSubTypeDetailed:
-        {
-            return @"Detailed";
-        }
-            
-        case ITCReportSubTypeOptIn:
-        {
-            return @"Opt-In";
-        }
-            
-        default:
-        {
-            return nil;
-        }
-    }
+	switch (reportSubType)
+	{
+		case ITCReportSubTypeSummary:
+		{
+			return @"Summary";
+		}
+			
+		case ITCReportSubTypeDetailed:
+		{
+			return @"Detailed";
+		}
+			
+		default:
+		{
+			return nil;
+		}
+	}
 }
 
 ITCReportSubType reportSubTypeFromString(NSString *reportSubTypeString)
 {
-    if ([reportSubTypeString isEqualToString:@"Summary"] || [reportSubTypeString isEqualToString:@"S"])
-    {
-        return ITCReportSubTypeSummary;
-    }
-    else if ([reportSubTypeString isEqualToString:@"Detailed"] || [reportSubTypeString isEqualToString:@"D"])
-    {
-        return ITCReportSubTypeDetailed;
-    }
-    else if ([reportSubTypeString isEqualToString:@"Opt-In"] || [reportSubTypeString isEqualToString:@"O"])
-    {
-        return ITCReportSubTypeOptIn;
-    }
-    
-    return ITCReportSubTypeUnknown;
+	if ([reportSubTypeString isEqualToString:@"Summary"] || [reportSubTypeString isEqualToString:@"S"])
+	{
+		return ITCReportSubTypeSummary;
+	}
+	else if ([reportSubTypeString isEqualToString:@"Detailed"] || [reportSubTypeString isEqualToString:@"D"])
+	{
+		return ITCReportSubTypeDetailed;
+	}
+	
+	return ITCReportSubTypeUnknown;
 }
 
 #pragma mark - Report Date Type Conversion
 
 NSString *NSStringFromITCReportDateType(ITCReportDateType reportDateType)
 {
-    switch (reportDateType)
-    {
-        case ITCReportDateTypeDaily:
-        {
-            return @"Daily";
-        }
-            
-        case ITCReportDateTypeWeekly:
-        {
-            return @"Weekly";
-        }
-            
-        case ITCReportDateTypeMonthly:
-        {
-            return @"Monthly";
-        }
-            
-        case ITCReportDateTypeYearly:
-        {
-            return @"Yearly";
-        }
-            
-        default:
-        {
-            return nil;
-        }
-    }
+	switch (reportDateType)
+	{
+		case ITCReportDateTypeDaily:
+		{
+			return @"Daily";
+		}
+			
+		case ITCReportDateTypeWeekly:
+		{
+			return @"Weekly";
+		}
+			
+		case ITCReportDateTypeMonthly:
+		{
+			return @"Monthly";
+		}
+			
+		case ITCReportDateTypeYearly:
+		{
+			return @"Yearly";
+		}
+			
+		default:
+		{
+			return nil;
+		}
+	}
 }
 
 ITCReportDateType reportDateTypeFromString(NSString *reportDateTypeString)
 {
-    if ([reportDateTypeString isEqualToString:@"Daily"] || [reportDateTypeString isEqualToString:@"D"])
-    {
-        return ITCReportDateTypeDaily;
-    }
-    else if ([reportDateTypeString isEqualToString:@"Weekly"] || [reportDateTypeString isEqualToString:@"W"])
-    {
-        return ITCReportDateTypeWeekly;
-    }
-    else if ([reportDateTypeString isEqualToString:@"Monthly"] || [reportDateTypeString isEqualToString:@"M"])
-    {
-        return ITCReportDateTypeMonthly;
-    }
-    else if ([reportDateTypeString isEqualToString:@"Yearly"] || [reportDateTypeString isEqualToString:@"Y"])
-    {
-        return ITCReportDateTypeYearly;
-    }
-    
-    return ITCReportDateTypeUnknown;
+	if ([reportDateTypeString isEqualToString:@"Daily"] || [reportDateTypeString isEqualToString:@"D"])
+	{
+		return ITCReportDateTypeDaily;
+	}
+	else if ([reportDateTypeString isEqualToString:@"Weekly"] || [reportDateTypeString isEqualToString:@"W"])
+	{
+		return ITCReportDateTypeWeekly;
+	}
+	else if ([reportDateTypeString isEqualToString:@"Monthly"] || [reportDateTypeString isEqualToString:@"M"])
+	{
+		return ITCReportDateTypeMonthly;
+	}
+	else if ([reportDateTypeString isEqualToString:@"Yearly"] || [reportDateTypeString isEqualToString:@"Y"])
+	{
+		return ITCReportDateTypeYearly;
+	}
+	
+	return ITCReportDateTypeUnknown;
 }
 
 #pragma mark - Date Formatting
 
 NSString *NSStringWithDateFormatForITCReportDateType(ITCReportDateType reportDateType)
 {
-    switch (reportDateType)
-    {
-        case ITCReportDateTypeDaily:
-        case ITCReportDateTypeWeekly:
-        default:
-        {
-            return @"yyyyMMdd";
-        }
-            
-        case ITCReportDateTypeMonthly:
-        {
-           return @"yyyyMM";
-        }
-            
-        case ITCReportDateTypeYearly:
-        {
-            return @"yyyy";
-        }
-    }
+	switch (reportDateType)
+	{
+		case ITCReportDateTypeDaily:
+		case ITCReportDateTypeWeekly:
+		default:
+		{
+			return @"yyyyMMdd";
+		}
+			
+		case ITCReportDateTypeMonthly:
+		{
+			return @"yyyyMM";
+		}
+			
+		case ITCReportDateTypeYearly:
+		{
+			return @"yyyy";
+		}
+	}
 }

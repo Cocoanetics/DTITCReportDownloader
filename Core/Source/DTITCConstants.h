@@ -11,26 +11,26 @@
 // kinds of reports
 typedef enum
 {
-    ITCReportTypeUnknown = 0,
+	ITCReportTypeUnknown = 0,
 	ITCReportTypeSales,
-	ITCReportTypeNewsstand
+	ITCReportTypeNewsstand,
+	ITCReportTypeOptIn
 } ITCReportType;
 
 // report sub types
 typedef enum
 {
-    ITCReportSubTypeUnknown = 0,
-    ITCReportSubTypeSummary,
-    ITCReportSubTypeDetailed,
-	ITCReportSubTypeOptIn
+	ITCReportSubTypeUnknown = 0,
+	ITCReportSubTypeSummary,
+	ITCReportSubTypeDetailed,  // only available for Newsstand
 } ITCReportSubType;
 
 // report range/date types
 typedef enum
 {
-    ITCReportDateTypeUnknown = 0,
+	ITCReportDateTypeUnknown = 0,
 	ITCReportDateTypeDaily,
 	ITCReportDateTypeWeekly,
 	ITCReportDateTypeMonthly,
-    ITCReportDateTypeYearly
+	ITCReportDateTypeYearly
 } ITCReportDateType;
