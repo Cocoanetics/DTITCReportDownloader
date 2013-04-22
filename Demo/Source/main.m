@@ -25,9 +25,10 @@ int main (int argc, const char * argv[])
 			printf("                Monthly will provide you the Monthly version of the report\n");
 			printf("                Weekly will provide you the Weekly version of the report\n");
 			printf("                Daily will provide you the Daily version of the report\n");
-			printf("report_subtype  Summary, Detailed or Opt-In, this is the parameter for the Sales Reports\n");
+			printf("report_subtype  Summary or Detailed. Detailed only avalable for Newsstand reports.\n");
 			printf("date_yyyymmdd   The date parameter is optional. Omit it to use yesterday's date.\n");
-			printf("                If you specify ALL for the date then the tool will try to download all reports of this type.\n\n");
+			printf("                If you specify ALL for the date then the tool will try to download\n");
+			printf("                all reports of this type.\n\n");
 			
 			return 1;
 		}
