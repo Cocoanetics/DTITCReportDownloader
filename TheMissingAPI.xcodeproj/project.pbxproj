@@ -326,6 +326,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/TheMissingAPI-Prefix.pch";
 				PRODUCT_NAME = ITCReportDownloader;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -336,6 +337,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/TheMissingAPI-Prefix.pch";
 				PRODUCT_NAME = ITCReportDownloader;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
