@@ -218,7 +218,14 @@
 	
 	if (compressed)
 	{
-		[retString appendString:@".gz"];
+		if (reportDateType == ITCReportTypeOptIn)
+		{
+			[retString appendString:@".gz"];
+		}
+		else
+		{
+			[retString appendString:@".zip"];
+		}
 	}
     
 	return retString;
