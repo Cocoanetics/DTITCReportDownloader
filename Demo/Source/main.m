@@ -154,7 +154,16 @@ int main (int argc, const char * argv[])
 												  reportDateType:reportDateType
 													reportSubType:reportSubType
 											  completionHandler:^(NSString *fileName, NSData *data) {
-												  NSString *baseName = [fileName stringByReplacingOccurrencesOfString:@".txt.gz" withString:@""];
+												  NSString *baseName;
+												  
+												  if (reportType == ITCReportTypeOptIn)
+												  {
+													  baseName = [fileName stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+												  }
+												  else
+												  {
+													 baseName = [fileName stringByReplacingOccurrencesOfString:@".txt.gz" withString:@""];
+												  }
 												  
 												  // update actual report date
 												  NSString *dateFormat = NSStringWithDateFormatForITCReportDateType(reportDateType);
