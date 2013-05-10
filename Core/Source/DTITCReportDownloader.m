@@ -220,11 +220,11 @@
 	{
 		if (reportDateType == ITCReportTypeOptIn)
 		{
-			[retString appendString:@".gz"];
+			[retString appendString:@".zip"];
 		}
 		else
 		{
-			[retString appendString:@".zip"];
+			[retString appendString:@".gz"];
 		}
 	}
     
