@@ -28,11 +28,6 @@ NSString *NSStringFromITCReportType(ITCReportType reportType)
 			return @"Newsstand";
 		}
 			
-		case ITCReportTypeOptIn:
-		{
-			return @"Opt-In";
-		}
-			
 		default:
 		{
 			return nil;
@@ -49,10 +44,6 @@ ITCReportType reportTypeFromString(NSString *reportTypeString)
 	else if ([reportTypeString isEqualToString:@"Newsstand"] || [reportTypeString isEqualToString:@"N"])
 	{
 		return ITCReportTypeNewsstand;
-	}
-	else if ([reportTypeString isEqualToString:@"Opt-In"] || [reportTypeString isEqualToString:@"O"])
-	{
-		return ITCReportTypeOptIn;
 	}
 	
 	return ITCReportTypeUnknown;
@@ -74,6 +65,11 @@ NSString *NSStringFromITCReportSubType(ITCReportSubType reportSubType)
 			return @"Detailed";
 		}
 			
+		case ITCReportSubTypeOptIn:
+		{
+			return @"Opt-In";
+		}
+			
 		default:
 		{
 			return nil;
@@ -90,6 +86,10 @@ ITCReportSubType reportSubTypeFromString(NSString *reportSubTypeString)
 	else if ([reportSubTypeString isEqualToString:@"Detailed"] || [reportSubTypeString isEqualToString:@"D"])
 	{
 		return ITCReportSubTypeDetailed;
+	}
+	else if ([reportSubTypeString isEqualToString:@"Opt-In"] || [reportSubTypeString isEqualToString:@"O"])
+	{
+		return ITCReportSubTypeOptIn;
 	}
 	
 	return ITCReportSubTypeUnknown;

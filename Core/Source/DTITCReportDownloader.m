@@ -218,7 +218,7 @@
 	
 	if (compressed)
 	{
-		if (reportType == ITCReportTypeOptIn)
+		if (reportSubType == ITCReportSubTypeOptIn)
 		{
 			[retString appendString:@".zip"];
 		}
